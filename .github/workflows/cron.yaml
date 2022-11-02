@@ -1,7 +1,7 @@
 name: daily-cron
 on:
   schedule:
-    - cron: "0 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
+    - cron: "0 0/2 * * *"
   workflow_dispatch:
     
 jobs:
@@ -28,8 +28,8 @@ jobs:
         run: echo "set-output nowdate=$(date)" >> $GITHUB_OUTPUT
       - name: git push
         run: |
-          git config --global user.email "dev01.topaz@gmail.com"
-          git config --global user.name "yotsugi-vip"
+          git config --global user.email "vip-splat3-schedule[bot]@vipzero.github.io"
+          git config --global user.name "vipzero/vip-splat3-schedule"
           git add -A
           git commit -m "make schedule ${{steps.nowdate.outputs.nowdate}}"
           git push origin main
